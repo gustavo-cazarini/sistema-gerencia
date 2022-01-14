@@ -1,7 +1,10 @@
 body{
     background-color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+
+/* LOGIN PAGE */
 .login-form .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
     opacity: .90;
 }
@@ -38,4 +41,32 @@ body{
 .login-submit:hover{
     background-color: #003068;
     color: #fff;
+}
+
+
+/* INDEX PAGE (DASHBOARD) */
+.navbar {
+    background-color: #003068;
+    font-weight: bolder;
+    color: #fff;
+}
+
+.navbar a {
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-item a:hover {
+    border: 1px solid #34fcfc;
+    color: #34fcfc;
+}
+
+.logout-btn {
+    transition-duration: .5s;
+}
+
+.logout-btn:hover {
+    color: #f00;
 }

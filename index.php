@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario'])) {
-    header('Location: login.php');
-}
+// if (!isset($_SESSION['usuario'])) {
+//     header('Location: login.php');
+// }
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +17,41 @@ if (!isset($_SESSION['usuario'])) {
     <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
-    <div class="w-50 p-3 mx-auto">
-        <button id="logout" class="btn btn-outline-danger">Logout</button>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
+                    <li class="nav-item me-3">
+                        <a class="nav-link" data-item="criar">Criar</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" data-item="listar">Listar</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" data-item="atualizar">Atualizar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-item="excluir">Excluir</a>
+                    </li>
+                </ul>
+                <div class="d-flex me-5">
+                    <i class="bi bi-person me-2"></i>
+                    <span class="border bg-white fw-normal text-dark pe-1 ps-1"><?php echo $_SESSION['usuario'] ?></span>
+                </div>
+                <div class="fs-4 me-3">
+                    <a id="logout" class="logout-btn"><i class="bi bi-box-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="w-100 p-2">
+        <div id="conteudo" class="bg-white text-center">
+            <p class="fs-2 fw-bolder text-uppercase">Painel de Controle</p>
+            <p class="text-muted fs-4">Escolha uma opção na barra de navegação</p>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

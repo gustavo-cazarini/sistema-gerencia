@@ -28,5 +28,26 @@ $(document).ready(function() {
 
     $('#logout').on('click', function(){
         location.href = "backend/logout.php"
-    })
+    });
+
+    function getDashboardItem(name) {
+        $.ajax({
+            type: 'GET',
+            url: 'backend/getview.php',
+            data: {
+                item: name
+            }
+        }).then(function(res){
+            let data = JSON.parse(res);
+
+            $('#conteudo').html(data.conteudo);
+        });
+    }
+
+    $('a[data-item]').on('click', function(e) {
+        e.preventDefault();
+
+        let dataItem = $(this).attr('data-item');
+        getDashboardItem(dataItem);
+    });
 });
