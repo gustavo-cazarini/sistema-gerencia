@@ -50,4 +50,61 @@ $(document).ready(function() {
         let dataItem = $(this).attr('data-item');
         getDashboardItem(dataItem);
     });
+
+    // CRIAR - ATUALIZAR
+    $('.input-img').on('change', function(){
+        const file = this.files[0];
+        if (file){
+            let reader = new FileReader();
+            reader.onload = function(event){
+            console.log(event.target.result);
+            $('.previewImg').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('.valor').mask('000.000.000,00', {reverse: true});
+
+
+    // CRIAR
+    $('#criar_form').on('submit', function(e) {
+        e.preventDefault();
+
+        var data = new FormData();
+
+        var imagem = $('#imgProduto').prop('files')[0];
+        var nome = $('#nome').val();
+        var estoque = $('#estoque').val();
+        var valor = $('#valor').cleanVal();
+        valor = valor.substring(0,valor.length-2)+"."+valor.substring(valor.length-2);
+
+        data.append('imagem', imagem);
+        data.append('nome', nome);
+        data.append('estoque', estoque);
+        data.append('valor', valor);
+
+        $.ajax({
+            url: "backend/criarform.php",
+            type: "POST",
+            data: data,
+            success: function (dataResult) {
+                if(dataResult.replace(/ .*/,'') == "Falha") {
+                    $('#mensagem').removeClass('text-success');
+                    $('#mensagem').addClass('text-danger');
+                    $('#mensagem').html(dataResult);
+                }
+                else {
+                    $('#mensagem').html(dataResult);
+                }
+                $('#criar_form').trigger("reset");
+                $('#nome').focus();
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+
 });
